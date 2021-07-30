@@ -1,0 +1,23 @@
+def solution(clothes):
+
+    #create blank dictionary
+    d = {}
+    
+    # make dictionary
+    for e in clothes: 
+        if d.get(e[1]) is not None:
+            d[e[1]] += 1
+        else:
+            d[e[1]] = 1
+    
+    # create deflaut answer(=1)
+    answer = 1
+    
+    # add 1 to each value and multiply all them
+    for v in d.values():
+        answer *= (v + 1)
+        
+    # delete one case that spy don't wear clothes
+    answer -= 1
+    
+    return answer
