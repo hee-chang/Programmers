@@ -1,0 +1,28 @@
+def solution(genres, plays):
+
+    # create new dictionary
+    dic = {}
+    
+    # dictionary added with genres(keys) and plays(values)
+    for genre, play in zip(genres, plays):
+        if dic.get(genre) is not None:
+            dic[genre] += play
+        else:
+            dic[genre] = play
+            
+    # sort by values
+    dic = sorted(dic, key = lambda x : dic[x], reverse = True)
+    
+    # make some list
+    gen_num = []
+    play_num = []
+    answer = []
+    
+    for genre in dic:
+        gen_num = list(filter(lambda x : genres[x] == genre, range(len(genres))))   # make list that have genre's indexs
+        play_num = list(map(lambda x : plays[x], gen_num))   # make list that have play number corresponding to 'gen_num' list's elements
+        num_dic = dict(zip(gen_num, play_num))   # new dictionary added with gen_num and play_num 
+        num_dic = sorted(num_dic, key = lambda x : num_dic[x], reverse = True)   # sort by values
+        answer.extend(num_dic[0:2])
+    
+    return answer
