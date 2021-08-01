@@ -1,0 +1,12 @@
+def solution(brown, yellow):
+
+    # 노란색 블럭이 한 개인 경우
+    if yellow == 1:
+        return [3,3]
+        
+    # 그 외의 경우
+    else:
+        for i in range(1, yellow//2 + 1):
+            if yellow%i == 0:
+                if (yellow/i + i)*2 + 4 == brown:
+                    return [yellow/i + 2, i + 2]
