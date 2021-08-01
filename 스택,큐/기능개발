@@ -1,0 +1,30 @@
+import math
+
+def solution(progresses, speeds):
+
+    li = []
+    cnt = 1
+    max_day = -1
+    answer = []
+    
+    # 각 기능들이 완성되는데 걸리는 일 수를 구하여 list에 저장
+    for pro, sp in zip(progresses, speeds):
+        day = math.ceil((100 - pro) / sp)
+        li.append(day)
+    
+    # 전 기능이 완료되기 전 기능이 완성되면 cnt에 +1, 더 느리면 answer에 cnt를 넣은 후 1로 초기화
+    for day in li:
+        if max_day == -1:
+            max_day = day
+        else:
+            if day > max_day:
+                answer.append(cnt)
+                max_day = day
+                cnt = 1
+            else:
+                cnt += 1
+    
+    # 마지막 cnt를 answer에 넣음
+    answer.append(cnt)
+
+    return answer
