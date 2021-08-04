@@ -1,0 +1,20 @@
+def solution(priorities, location):
+
+    answer = 0
+    
+    while True:
+        answer += 1
+        max_loc = priorities.index(max(priorities))
+        
+        if location == max_loc:
+            return answer
+            break
+            
+        elif location < max_loc:
+            location = len(priorities) - max_loc + location - 1
+            
+        else:
+            location -= max_loc + 1
+            
+        priorities.extend(priorities[:max_loc])
+        del priorities[:max_loc + 1]
